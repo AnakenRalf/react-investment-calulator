@@ -9,35 +9,33 @@ export default function Calculator({ investmentState, onChange }) {
       <div className="input-group">
         <InputField
           labelName="Initial Investment"
-          idName="initInvestment"
+          idName="initialInvestment"
           initialValue={initialInvestment}
           value={initialInvestment}
-          onChange={(event) =>
-            onChange("initialInvestment", event.target.value)
-          }
+          onChange={onChange}
         />
         <InputField
           labelName="Annual Investment"
-          idName="anualInvest"
+          idName="annualInvestment"
           initialValue={annualInvestment}
           value={annualInvestment}
-          onChange={(event) => onChange("annualInvestment", event.target.value)}
+          onChange={onChange}
         />
       </div>
       <div className="input-group">
         <InputField
           labelName="Expected Returns"
-          idName="expectReturn"
+          idName="expectedReturn"
           initialValue={expectedReturn}
           value={expectedReturn}
-          onChange={(event) => onChange("expectedReturn", event.target.value)}
+          onChange={onChange}
         />
         <InputField
           labelName="Duration"
           idName="duration"
           initialValue={duration}
           value={duration}
-          onChange={(event) => onChange("duration", event.target.value)}
+          onChange={onChange}
         />
       </div>
     </section>

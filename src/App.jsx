@@ -5,41 +5,35 @@ import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import ResulrTable from "./Components/ResultTable/ResulrTable";
 
-import { calculateInvestmentResults } from "./util/investment";
 function App() {
   const [investmentState, setInvestmentState] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
+    initialInvestment: 5000,
+    annualInvestment: 400,
     expectedReturn: 6,
     duration: 10,
   });
 
-  function handleChange(inputIdentifier, newValue) {
-    setInvestmentState((prevState) => {
-      return {
-        ...prevState,
-        [inputIdentifier]: newValue,
-      };
-    });
-  }
+  const isDataValid = investmentState.duration >= 1;
 
-  const { initialInvestment, annualInvestment, expectedReturn, duration } =
-    investmentState;
+  const handleChange = (inputIdentifier, newValue) => {
+    console.log(inputIdentifier, newValue);
+    setInvestmentState((prevState) => ({
+      ...prevState,
+      [inputIdentifier]: newValue,
+    }));
+  };
 
-  const results = calculateInvestmentResults({
-    initialInvestment,
-    annualInvestment,
-    expectedReturn,
-    duration,
-  });
   return (
     <div className="main">
       <div>
         <Header />
-
         <Calculator investmentState={investmentState} onChange={handleChange} />
-        {/* Derive state to this compotent */}
-        <ResulrTable results={investmentState} />
+        {!isDataValid && (
+          <p className="center">
+            Please provide correct duration more than 0 years
+          </p>
+        )}
+        {isDataValid && <ResulrTable dataForCalculator={investmentState} />}
       </div>
       <Footer />
     </div>
